@@ -1,8 +1,6 @@
-# targetfilename ='counter.rtf'
-# data = File.readlines(filename)
 
 class GetInfo
-  attr_reader :hello, :information
+  attr_reader :information
 
   def self.information
     filename = 'messages.rtf'
@@ -36,18 +34,15 @@ class GetInfo
 
           #ignore all unknowns and phone bots
           if contact_name != "(Unknown)" && phone_number.length > 6
-            #if the hash is not yet created, create a new one for that contact name
+            #if the hash is not yet created
+            #create a new one for that contact name
             if information[contact_name].nil?
-              # puts "MMMMM"
-              # p contact_name
               #did you send a message?
               if type == "2"
                 information[contact_name] = {'phone_number' => phone_number, 'received' => 0, 'sent' => 1}
-                # puts "HI"
               #did you receive the message?
               elsif type == "1"
                 information[contact_name] = {'phone_number' => phone_number, 'received' => 1, 'sent' => 0}
-                # puts "BYE"
               end
             #if the contact already exists, update the count for sent or received
             else
@@ -65,5 +60,3 @@ class GetInfo
     return information
   end
 end
-# hello = information
-# p hello
